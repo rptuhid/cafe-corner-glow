@@ -71,7 +71,7 @@ export function SiteHeader() {
           aria-expanded={open}
           className="rounded-lg p-2 text-white lg:hidden"
         >
-          {open ? <Menu className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </nav>
 
@@ -113,5 +113,3 @@ export function SiteHeader() {
     </header>
   );
 }
-
-export { X };
