@@ -18,6 +18,13 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
+import { Route as AuthenticatedDashboardAccountsRouteImport } from './routes/_authenticated/dashboard/accounts'
+import { Route as AuthenticatedDashboardClientsRouteImport } from './routes/_authenticated/dashboard/clients'
+import { Route as AuthenticatedDashboardClosingRouteImport } from './routes/_authenticated/dashboard/closing'
+import { Route as AuthenticatedDashboardContentRouteImport } from './routes/_authenticated/dashboard/content'
+import { Route as AuthenticatedDashboardHrRouteImport } from './routes/_authenticated/dashboard/hr'
+import { Route as AuthenticatedDashboardSettingsRouteImport } from './routes/_authenticated/dashboard/settings'
+import { Route as AuthenticatedDashboardStudioRouteImport } from './routes/_authenticated/dashboard/studio'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +71,48 @@ const AuthenticatedDashboardIndexRoute =
     path: '/dashboard/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedDashboardAccountsRoute =
+  AuthenticatedDashboardAccountsRouteImport.update({
+    id: '/dashboard/accounts',
+    path: '/dashboard/accounts',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardClientsRoute =
+  AuthenticatedDashboardClientsRouteImport.update({
+    id: '/dashboard/clients',
+    path: '/dashboard/clients',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardClosingRoute =
+  AuthenticatedDashboardClosingRouteImport.update({
+    id: '/dashboard/closing',
+    path: '/dashboard/closing',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardContentRoute =
+  AuthenticatedDashboardContentRouteImport.update({
+    id: '/dashboard/content',
+    path: '/dashboard/content',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardHrRoute =
+  AuthenticatedDashboardHrRouteImport.update({
+    id: '/dashboard/hr',
+    path: '/dashboard/hr',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardSettingsRoute =
+  AuthenticatedDashboardSettingsRouteImport.update({
+    id: '/dashboard/settings',
+    path: '/dashboard/settings',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardStudioRoute =
+  AuthenticatedDashboardStudioRouteImport.update({
+    id: '/dashboard/studio',
+    path: '/dashboard/studio',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -73,6 +122,13 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
+  '/dashboard/accounts': typeof AuthenticatedDashboardAccountsRoute
+  '/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
+  '/dashboard/closing': typeof AuthenticatedDashboardClosingRoute
+  '/dashboard/content': typeof AuthenticatedDashboardContentRoute
+  '/dashboard/hr': typeof AuthenticatedDashboardHrRoute
+  '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/dashboard/studio': typeof AuthenticatedDashboardStudioRoute
   '/dashboard/': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -83,6 +139,13 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
+  '/dashboard/accounts': typeof AuthenticatedDashboardAccountsRoute
+  '/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
+  '/dashboard/closing': typeof AuthenticatedDashboardClosingRoute
+  '/dashboard/content': typeof AuthenticatedDashboardContentRoute
+  '/dashboard/hr': typeof AuthenticatedDashboardHrRoute
+  '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/dashboard/studio': typeof AuthenticatedDashboardStudioRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRoutesById {
@@ -95,6 +158,13 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
+  '/_authenticated/dashboard/accounts': typeof AuthenticatedDashboardAccountsRoute
+  '/_authenticated/dashboard/clients': typeof AuthenticatedDashboardClientsRoute
+  '/_authenticated/dashboard/closing': typeof AuthenticatedDashboardClosingRoute
+  '/_authenticated/dashboard/content': typeof AuthenticatedDashboardContentRoute
+  '/_authenticated/dashboard/hr': typeof AuthenticatedDashboardHrRoute
+  '/_authenticated/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/_authenticated/dashboard/studio': typeof AuthenticatedDashboardStudioRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -107,6 +177,13 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/reviews'
     | '/services'
+    | '/dashboard/accounts'
+    | '/dashboard/clients'
+    | '/dashboard/closing'
+    | '/dashboard/content'
+    | '/dashboard/hr'
+    | '/dashboard/settings'
+    | '/dashboard/studio'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -117,6 +194,13 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/reviews'
     | '/services'
+    | '/dashboard/accounts'
+    | '/dashboard/clients'
+    | '/dashboard/closing'
+    | '/dashboard/content'
+    | '/dashboard/hr'
+    | '/dashboard/settings'
+    | '/dashboard/studio'
     | '/dashboard'
   id:
     | '__root__'
@@ -128,6 +212,13 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/reviews'
     | '/services'
+    | '/_authenticated/dashboard/accounts'
+    | '/_authenticated/dashboard/clients'
+    | '/_authenticated/dashboard/closing'
+    | '/_authenticated/dashboard/content'
+    | '/_authenticated/dashboard/hr'
+    | '/_authenticated/dashboard/settings'
+    | '/_authenticated/dashboard/studio'
     | '/_authenticated/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -207,14 +298,77 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/dashboard/accounts': {
+      id: '/_authenticated/dashboard/accounts'
+      path: '/dashboard/accounts'
+      fullPath: '/dashboard/accounts'
+      preLoaderRoute: typeof AuthenticatedDashboardAccountsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/clients': {
+      id: '/_authenticated/dashboard/clients'
+      path: '/dashboard/clients'
+      fullPath: '/dashboard/clients'
+      preLoaderRoute: typeof AuthenticatedDashboardClientsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/closing': {
+      id: '/_authenticated/dashboard/closing'
+      path: '/dashboard/closing'
+      fullPath: '/dashboard/closing'
+      preLoaderRoute: typeof AuthenticatedDashboardClosingRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/content': {
+      id: '/_authenticated/dashboard/content'
+      path: '/dashboard/content'
+      fullPath: '/dashboard/content'
+      preLoaderRoute: typeof AuthenticatedDashboardContentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/hr': {
+      id: '/_authenticated/dashboard/hr'
+      path: '/dashboard/hr'
+      fullPath: '/dashboard/hr'
+      preLoaderRoute: typeof AuthenticatedDashboardHrRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/settings': {
+      id: '/_authenticated/dashboard/settings'
+      path: '/dashboard/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof AuthenticatedDashboardSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/studio': {
+      id: '/_authenticated/dashboard/studio'
+      path: '/dashboard/studio'
+      fullPath: '/dashboard/studio'
+      preLoaderRoute: typeof AuthenticatedDashboardStudioRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardAccountsRoute: typeof AuthenticatedDashboardAccountsRoute
+  AuthenticatedDashboardClientsRoute: typeof AuthenticatedDashboardClientsRoute
+  AuthenticatedDashboardClosingRoute: typeof AuthenticatedDashboardClosingRoute
+  AuthenticatedDashboardContentRoute: typeof AuthenticatedDashboardContentRoute
+  AuthenticatedDashboardHrRoute: typeof AuthenticatedDashboardHrRoute
+  AuthenticatedDashboardSettingsRoute: typeof AuthenticatedDashboardSettingsRoute
+  AuthenticatedDashboardStudioRoute: typeof AuthenticatedDashboardStudioRoute
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardAccountsRoute: AuthenticatedDashboardAccountsRoute,
+  AuthenticatedDashboardClientsRoute: AuthenticatedDashboardClientsRoute,
+  AuthenticatedDashboardClosingRoute: AuthenticatedDashboardClosingRoute,
+  AuthenticatedDashboardContentRoute: AuthenticatedDashboardContentRoute,
+  AuthenticatedDashboardHrRoute: AuthenticatedDashboardHrRoute,
+  AuthenticatedDashboardSettingsRoute: AuthenticatedDashboardSettingsRoute,
+  AuthenticatedDashboardStudioRoute: AuthenticatedDashboardStudioRoute,
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
 }
 
