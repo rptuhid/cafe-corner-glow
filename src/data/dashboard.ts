@@ -1,3 +1,5 @@
+export type AppRole = "admin" | "executive" | "staff" | "client";
+
 export type ModuleItem = {
   id: string;
   to: string;
@@ -7,7 +9,25 @@ export type ModuleItem = {
   icon: ModuleIcon;
   tone: string;
   soon?: boolean;
+  roles: AppRole[];
 };
+
+export const roleLabel: Record<AppRole, string> = {
+  admin: "অ্যাডমিন",
+  executive: "এক্সিকিউটিভ",
+  staff: "স্টাফ",
+  client: "ক্লায়েন্ট",
+};
+
+export function modulesForRole(role: AppRole | null): ModuleItem[] {
+  if (!role) return [];
+  return modules.filter((m) => m.roles.includes(role));
+}
+
+export function canAccess(role: AppRole | null, moduleId: string): boolean {
+  if (!role) return false;
+  return modules.some((m) => m.id === moduleId && m.roles.includes(role));
+}
 
 export type ModuleIcon =
   | "content"
