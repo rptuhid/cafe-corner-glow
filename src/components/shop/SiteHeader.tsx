@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { LogIn, Menu, MessageCircle, X } from "lucide-react";
+import { LayoutDashboard, LogIn, Menu, MessageCircle, X } from "lucide-react";
 import logo from "@/assets/shop-logo.jpg.asset.json";
 import { shop, whatsappUrl } from "@/data/shop";
+import { useSession } from "@/hooks/useSession";
 
 const links = [
   { to: "/services", label: "সেবাসমূহ" },
@@ -14,6 +15,10 @@ const links = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const { session } = useSession();
+  const authLink = session
+    ? ({ to: "/dashboard", label: "ড্যাশবোর্ড", Icon: LayoutDashboard } as const)
+    : ({ to: "/login", label: "লগইন", Icon: LogIn } as const);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/95 backdrop-blur-xl">
