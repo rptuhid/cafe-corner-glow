@@ -54,10 +54,10 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-2 lg:flex">
           <Link
-            to="/login"
+            to={authLink.to}
             className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-3.5 py-2 text-sm font-medium text-white/85 transition-colors hover:border-brand-accent hover:text-brand-accent"
           >
-            <LogIn className="h-4 w-4" /> লগইন
+            <authLink.Icon className="h-4 w-4" /> {authLink.label}
           </Link>
           <a
             href={whatsappUrl}
@@ -98,11 +98,11 @@ export function SiteHeader() {
           </ul>
           <div className="flex gap-2">
             <Link
-              to="/login"
+              to={authLink.to}
               onClick={() => setOpen(false)}
               className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-white/15 px-3 py-2 text-sm font-medium text-white"
             >
-              <LogIn className="h-4 w-4" /> লগইন
+              <authLink.Icon className="h-4 w-4" /> {authLink.label}
             </Link>
             <a
               href={whatsappUrl}
