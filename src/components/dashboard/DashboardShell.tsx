@@ -1,10 +1,11 @@
 import { useState, type ReactNode } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { LayoutDashboard, LogOut, Menu, X } from "lucide-react";
+import { LayoutDashboard, Loader2, LogOut, Menu, ShieldAlert, X } from "lucide-react";
 import logo from "@/assets/shop-logo.jpg.asset.json";
 import { supabase } from "@/integrations/supabase/client";
-import { modules } from "@/data/dashboard";
+import { canAccess, modulesForRole, roleLabel } from "@/data/dashboard";
+import { useRole } from "@/hooks/useRole";
 import { ModuleIcon } from "./ModuleIcon";
 import { shop } from "@/data/shop";
 
@@ -21,6 +22,9 @@ export function DashboardShell({
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const { role } = useRole();
+  const visibleModules = modulesForRole(role);
+  const isClient = role === "client";
 
   async function handleSignOut() {
     await queryClient.cancelQueries();
@@ -28,6 +32,7 @@ export function DashboardShell({
     await supabase.auth.signOut();
     navigate({ to: "/login", replace: true });
   }
+
 
   const nav = (
     <nav className="space-y-1">
