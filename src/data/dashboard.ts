@@ -41,6 +41,7 @@ export type ModuleIcon =
 export const modules: ModuleItem[] = [
   {
     id: "content",
+    roles: ["admin", "executive"],
     to: "/dashboard/content",
     titleBn: "কন্টেন্ট ম্যানেজমেন্ট",
     titleEn: "Content Management",
@@ -50,6 +51,7 @@ export const modules: ModuleItem[] = [
   },
   {
     id: "clients",
+    roles: ["admin", "executive", "client"],
     to: "/dashboard/clients",
     titleBn: "ক্লায়েন্ট ম্যানেজমেন্ট",
     titleEn: "Client Management",
@@ -59,6 +61,7 @@ export const modules: ModuleItem[] = [
   },
   {
     id: "studio",
+    roles: ["admin", "executive"],
     to: "/dashboard/studio",
     titleBn: "স্টুডিও অপারেশনস",
     titleEn: "Studio Operations",
@@ -69,6 +72,7 @@ export const modules: ModuleItem[] = [
   },
   {
     id: "accounts",
+    roles: ["admin"],
     to: "/dashboard/accounts",
     titleBn: "পেয়েবল ও রিসিভেবল",
     titleEn: "Accounts: Payable & Receivable",
@@ -78,6 +82,7 @@ export const modules: ModuleItem[] = [
   },
   {
     id: "hr",
+    roles: ["admin"],
     to: "/dashboard/hr",
     titleBn: "এইচআর ও পে-রোল",
     titleEn: "HR & Payroll Management",
@@ -87,6 +92,7 @@ export const modules: ModuleItem[] = [
   },
   {
     id: "closing",
+    roles: ["admin"],
     to: "/dashboard/closing",
     titleBn: "দৈনিক ব্যাংক ও ক্যাশ ক্লোজিং",
     titleEn: "Daily Bank & Cash Closing Entry",
@@ -96,6 +102,7 @@ export const modules: ModuleItem[] = [
   },
   {
     id: "settings",
+    roles: ["admin"],
     to: "/dashboard/settings",
     titleBn: "অ্যাকাউন্ট সেটিংস ও ফাইন্যান্সিয়ালস",
     titleEn: "Account Settings & Financials",
