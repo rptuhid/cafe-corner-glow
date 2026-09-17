@@ -99,6 +99,11 @@ export function DashboardShell({
               <h1 className="truncate font-display text-xl font-extrabold text-white">{title}</h1>
               {subtitle ? <p className="mt-1 text-sm text-white/55">{subtitle}</p> : null}
             </div>
+            {role ? (
+              <span className="hidden shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-white/70 sm:inline">
+                {roleLabel[role]}
+              </span>
+            ) : null}
             <button
               className="rounded-xl border border-white/15 p-2 text-white lg:hidden"
               onClick={() => setOpen((v) => !v)}
