@@ -125,7 +125,25 @@ export function DashboardShell({
             </div>
           ) : null}
 
-          <main className="px-4 py-7 lg:px-8">{children}</main>
+          <main className="px-4 py-7 lg:px-8">
+            {loading ? (
+              <div className="flex items-center gap-2 text-sm text-white/60">
+                <Loader2 className="h-4 w-4 animate-spin" /> লোড হচ্ছে…
+              </div>
+            ) : denied ? (
+              <div className="rounded-2xl border border-red-500/25 bg-red-500/10 p-8 text-center">
+                <ShieldAlert className="mx-auto h-8 w-8 text-red-300" />
+                <p className="mt-3 font-display text-base font-bold text-white">
+                  এই সেকশনে আপনার প্রবেশাধিকার নেই
+                </p>
+                <p className="mt-1 text-sm text-white/60">
+                  প্রয়োজন হলে অ্যাডমিনের সাথে যোগাযোগ করুন।
+                </p>
+              </div>
+            ) : (
+              children
+            )}
+          </main>
         </div>
       </div>
     </div>
