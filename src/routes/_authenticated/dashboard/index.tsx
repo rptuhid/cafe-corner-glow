@@ -1,8 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
 import { ModuleIcon } from "@/components/dashboard/ModuleIcon";
-import { modules, toneClass } from "@/data/dashboard";
+import { modulesForRole, toneClass } from "@/data/dashboard";
+import { useRole } from "@/hooks/useRole";
 
 const title = "ড্যাশবোর্ড | ডিজিটাল কম্পিউটার ও সাইবার ক্যাফে";
 const description = "কন্টেন্ট, ক্লায়েন্ট, হিসাব ও পে-রোল পরিচালনার কেন্দ্রীয় ড্যাশবোর্ড।";
