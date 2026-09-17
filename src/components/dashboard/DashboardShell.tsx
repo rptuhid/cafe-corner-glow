@@ -39,18 +39,20 @@ export function DashboardShell({
 
   const nav = (
     <nav className="space-y-1">
-      <Link
-        to="/dashboard"
-        onClick={() => setOpen(false)}
-        className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors ${
-          pathname === "/dashboard"
-            ? "bg-primary text-primary-foreground"
-            : "text-white/70 hover:bg-white/8 hover:text-white"
-        }`}
-      >
-        <LayoutDashboard className="h-4 w-4" /> ড্যাশবোর্ড
-      </Link>
-      {modules.map((m) => (
+      {isClient ? null : (
+        <Link
+          to="/dashboard"
+          onClick={() => setOpen(false)}
+          className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors ${
+            pathname === "/dashboard"
+              ? "bg-primary text-primary-foreground"
+              : "text-white/70 hover:bg-white/8 hover:text-white"
+          }`}
+        >
+          <LayoutDashboard className="h-4 w-4" /> ড্যাশবোর্ড
+        </Link>
+      )}
+      {visibleModules.map((m) => (
         <Link
           key={m.id}
           to={m.to}
