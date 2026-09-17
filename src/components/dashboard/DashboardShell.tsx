@@ -12,19 +12,22 @@ import { shop } from "@/data/shop";
 export function DashboardShell({
   title,
   subtitle,
+  moduleId,
   children,
 }: {
   title: string;
   subtitle?: string;
+  moduleId?: string;
   children: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const { role } = useRole();
+  const { role, loading } = useRole();
   const visibleModules = modulesForRole(role);
   const isClient = role === "client";
+  const denied = !loading && moduleId ? !canAccess(role, moduleId) : false;
 
   async function handleSignOut() {
     await queryClient.cancelQueries();
