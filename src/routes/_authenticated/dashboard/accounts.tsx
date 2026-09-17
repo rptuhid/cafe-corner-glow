@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_authenticated/dashboard/accounts")({
 
 function Page() {
   return (
-    <DashboardShell title={"পেয়েবল ও রিসিভেবল"} subtitle={"Accounts: Payable & Receivable"}>
+    <DashboardShell title={"পেয়েবল ও রিসিভেবল"} subtitle={"Accounts: Payable & Receivable"} moduleId={"accounts"}>
       <ModulePlaceholder note={"বাকি, পাওনা ও দেনার হিসাব এখান থেকে পরিচালনা করা হবে।"} />
     </DashboardShell>
   );
