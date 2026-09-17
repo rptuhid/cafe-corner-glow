@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_authenticated/dashboard/hr")({
 
 function Page() {
   return (
-    <DashboardShell title={"এইচআর ও পে-রোল"} subtitle={"HR & Payroll Management"}>
+    <DashboardShell title={"এইচআর ও পে-রোল"} subtitle={"HR & Payroll Management"} moduleId={"hr"}>
       <ModulePlaceholder note={"কর্মী তালিকা, হাজিরা ও বেতন ব্যবস্থাপনা এখানে থাকবে।"} />
     </DashboardShell>
   );

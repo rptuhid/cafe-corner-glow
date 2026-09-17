@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_authenticated/dashboard/studio")({
 
 function Page() {
   return (
-    <DashboardShell title={"স্টুডিও অপারেশনস"} subtitle={"Studio Operations"}>
+    <DashboardShell title={"স্টুডিও অপারেশনস"} subtitle={"Studio Operations"} moduleId={"studio"}>
       <ModulePlaceholder note={"ছবি এডিটিং, প্রিন্ট ও স্টুডিও সংশ্লিষ্ট কাজের জন্য সংরক্ষিত।"} />
     </DashboardShell>
   );

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_authenticated/dashboard/content")({
 
 function Page() {
   return (
-    <DashboardShell title={"কন্টেন্ট ম্যানেজমেন্ট"} subtitle={"Content Management"}>
+    <DashboardShell title={"কন্টেন্ট ম্যানেজমেন্ট"} subtitle={"Content Management"} moduleId={"content"}>
       <ModulePlaceholder note={"ওয়েবসাইটের সেবা, দাম, রিভিউ ও পেজের কন্টেন্ট এখান থেকে পরিচালনা করা হবে।"} />
     </DashboardShell>
   );

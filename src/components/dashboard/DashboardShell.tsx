@@ -12,19 +12,22 @@ import { shop } from "@/data/shop";
 export function DashboardShell({
   title,
   subtitle,
+  moduleId,
   children,
 }: {
   title: string;
   subtitle?: string;
+  moduleId?: string;
   children: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const { role } = useRole();
+  const { role, loading } = useRole();
   const visibleModules = modulesForRole(role);
   const isClient = role === "client";
+  const denied = !loading && moduleId ? !canAccess(role, moduleId) : false;
 
   async function handleSignOut() {
     await queryClient.cancelQueries();
@@ -36,18 +39,20 @@ export function DashboardShell({
 
   const nav = (
     <nav className="space-y-1">
-      <Link
-        to="/dashboard"
-        onClick={() => setOpen(false)}
-        className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors ${
-          pathname === "/dashboard"
-            ? "bg-primary text-primary-foreground"
-            : "text-white/70 hover:bg-white/8 hover:text-white"
-        }`}
-      >
-        <LayoutDashboard className="h-4 w-4" /> ড্যাশবোর্ড
-      </Link>
-      {modules.map((m) => (
+      {isClient ? null : (
+        <Link
+          to="/dashboard"
+          onClick={() => setOpen(false)}
+          className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors ${
+            pathname === "/dashboard"
+              ? "bg-primary text-primary-foreground"
+              : "text-white/70 hover:bg-white/8 hover:text-white"
+          }`}
+        >
+          <LayoutDashboard className="h-4 w-4" /> ড্যাশবোর্ড
+        </Link>
+      )}
+      {visibleModules.map((m) => (
         <Link
           key={m.id}
           to={m.to}
@@ -94,6 +99,11 @@ export function DashboardShell({
               <h1 className="truncate font-display text-xl font-extrabold text-white">{title}</h1>
               {subtitle ? <p className="mt-1 text-sm text-white/55">{subtitle}</p> : null}
             </div>
+            {role ? (
+              <span className="hidden shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-white/70 sm:inline">
+                {roleLabel[role]}
+              </span>
+            ) : null}
             <button
               className="rounded-xl border border-white/15 p-2 text-white lg:hidden"
               onClick={() => setOpen((v) => !v)}
@@ -115,7 +125,25 @@ export function DashboardShell({
             </div>
           ) : null}
 
-          <main className="px-4 py-7 lg:px-8">{children}</main>
+          <main className="px-4 py-7 lg:px-8">
+            {loading ? (
+              <div className="flex items-center gap-2 text-sm text-white/60">
+                <Loader2 className="h-4 w-4 animate-spin" /> লোড হচ্ছে…
+              </div>
+            ) : denied ? (
+              <div className="rounded-2xl border border-red-500/25 bg-red-500/10 p-8 text-center">
+                <ShieldAlert className="mx-auto h-8 w-8 text-red-300" />
+                <p className="mt-3 font-display text-base font-bold text-white">
+                  এই সেকশনে আপনার প্রবেশাধিকার নেই
+                </p>
+                <p className="mt-1 text-sm text-white/60">
+                  প্রয়োজন হলে অ্যাডমিনের সাথে যোগাযোগ করুন।
+                </p>
+              </div>
+            ) : (
+              children
+            )}
+          </main>
         </div>
       </div>
     </div>

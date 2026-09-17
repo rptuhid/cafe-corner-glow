@@ -1,8 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
 import { ModuleIcon } from "@/components/dashboard/ModuleIcon";
-import { modules, toneClass } from "@/data/dashboard";
+import { modulesForRole, toneClass } from "@/data/dashboard";
+import { useRole } from "@/hooks/useRole";
 
 const title = "ড্যাশবোর্ড | ডিজিটাল কম্পিউটার ও সাইবার ক্যাফে";
 const description = "কন্টেন্ট, ক্লায়েন্ট, হিসাব ও পে-রোল পরিচালনার কেন্দ্রীয় ড্যাশবোর্ড।";
@@ -23,10 +25,20 @@ export const Route = createFileRoute("/_authenticated/dashboard/")({
 });
 
 function DashboardHome() {
+  const { role, loading } = useRole();
+  const navigate = useNavigate();
+  const visibleModules = modulesForRole(role);
+
+  useEffect(() => {
+    if (!loading && role === "client") {
+      navigate({ to: "/dashboard/clients", replace: true });
+    }
+  }, [loading, role, navigate]);
+
   return (
     <DashboardShell title="মূল ড্যাশবোর্ড" subtitle="যে মডিউলে কাজ করবেন সেটি নির্বাচন করুন">
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {modules.map((m) => (
+        {visibleModules.map((m) => (
           <Link
             key={m.id}
             to={m.to}

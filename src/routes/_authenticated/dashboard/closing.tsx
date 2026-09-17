@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_authenticated/dashboard/closing")({
 
 function Page() {
   return (
-    <DashboardShell title={"দৈনিক ব্যাংক ও ক্যাশ ক্লোজিং"} subtitle={"Daily Bank & Cash Closing Entry"}>
+    <DashboardShell title={"দৈনিক ব্যাংক ও ক্যাশ ক্লোজিং"} subtitle={"Daily Bank & Cash Closing Entry"} moduleId={"closing"}>
       <ModulePlaceholder note={"প্রতিদিনের ক্যাশ ও ব্যাংক ক্লোজিং এন্ট্রি এখানে করা হবে।"} />
     </DashboardShell>
   );
