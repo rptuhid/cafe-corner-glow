@@ -14,26 +14,122 @@ export type Database = {
   }
   public: {
     Tables: {
-      profiles: {
+      orders: {
         Row: {
+          admin_note: string | null
+          advance_amount: number
+          client_id: string
+          created_at: string
+          details: string | null
+          due_amount: number | null
+          id: string
+          progress: number
+          service_title: string
+          status: string
+          total_amount: number
+          updated_at: string
+        }
+        Insert: {
+          admin_note?: string | null
+          advance_amount?: number
+          client_id: string
+          created_at?: string
+          details?: string | null
+          due_amount?: number | null
+          id?: string
+          progress?: number
+          service_title: string
+          status?: string
+          total_amount?: number
+          updated_at?: string
+        }
+        Update: {
+          admin_note?: string | null
+          advance_amount?: number
+          client_id?: string
+          created_at?: string
+          details?: string | null
+          due_amount?: number | null
+          id?: string
+          progress?: number
+          service_title?: string
+          status?: string
+          total_amount?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profile_change_requests: {
+        Row: {
+          address: string | null
           avatar_url: string | null
           created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          address?: string | null
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          address?: string | null
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          address: string | null
+          avatar_url: string | null
+          client_code: string | null
+          created_at: string
+          email: string | null
           full_name: string | null
           id: string
           phone: string | null
           updated_at: string
         }
         Insert: {
+          address?: string | null
           avatar_url?: string | null
+          client_code?: string | null
           created_at?: string
+          email?: string | null
           full_name?: string | null
           id: string
           phone?: string | null
           updated_at?: string
         }
         Update: {
+          address?: string | null
           avatar_url?: string | null
+          client_code?: string | null
           created_at?: string
+          email?: string | null
           full_name?: string | null
           id?: string
           phone?: string | null
