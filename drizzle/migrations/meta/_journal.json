@@ -29,6 +29,13 @@
       "when": 1789710248479,
       "tag": "0003_clients_orders_profile_requests",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1789710286628,
+      "tag": "0004_avatar_storage_policies",
+      "breakpoints": true
     }
   ]
 }
