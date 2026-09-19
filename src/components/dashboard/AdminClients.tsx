@@ -114,7 +114,13 @@ export function AdminClients() {
       if (!req) throw new Error("not found");
       const { data: userData } = await supabase.auth.getUser();
       if (approve) {
-        const patch: Record<string, string> = {};
+        const patch: {
+          full_name?: string;
+          phone?: string;
+          email?: string;
+          address?: string;
+          avatar_url?: string;
+        } = {};
         if (req.full_name) patch.full_name = req.full_name;
         if (req.phone) patch.phone = req.phone;
         if (req.email) patch.email = req.email;
