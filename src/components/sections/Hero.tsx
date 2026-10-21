@@ -1,98 +1,29 @@
 import { Link } from "@tanstack/react-router";
-import { LayoutGrid, MessageCircle, ShieldCheck } from "lucide-react";
-import { heroStats, services, whatsappUrl } from "@/data/shop";
-import { ServiceIcon } from "@/components/shop/ServiceIcon";
-
-const floatCards = [
-  { id: "epassport", status: "✓ এখনই উপলব্ধ", title: "ই-পাসপোর্ট", icon: "passport" },
-  { id: "nid", status: "✓ দ্রুত প্রক্রিয়া", title: "এনআইডি সেবা", icon: "id" },
-  { id: "visa", status: "✓ অনলাইন সহায়তা", title: "ভিসা প্রসেসিং", icon: "plane" },
-  { id: "birth", status: "✓ Quick & Easy", title: "জন্ম নিবন্ধন", icon: "baby" },
-] as const;
+import { LayoutGrid, LogIn, MapPin, Phone } from "lucide-react";
+import { shop } from "@/data/shop";
+import logo from "@/assets/shop-logo.jpg.asset.json";
+import { Button } from "@/components/ui/button";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-background">
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 60% 40%, color-mix(in oklab, var(--brand) 30%, transparent) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 10% 80%, color-mix(in oklab, var(--brand-accent) 20%, transparent) 0%, transparent 50%)",
-        }}
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto grid max-w-[1200px] items-center gap-8 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-28">
-        <div>
-          <span className="inline-flex items-center gap-2 rounded border border-brand-accent/30 bg-brand-accent/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-primary uppercase">
-            <ShieldCheck className="h-3.5 w-3.5" /> Trusted &amp; Certified Services
-          </span>
-
-          <h1 className="mt-6 text-4xl leading-[1.15] font-extrabold text-foreground sm:text-5xl">
-            আপনার সকল
-            <br />
-            <span className="brand-gradient-text">ডিজিটাল সমাধানের</span> বিশ্বস্ত অংশীদার
-          </h1>
-
-          <p className="mt-6 max-w-xl text-muted-foreground">
-            ই-পাসপোর্ট, এনআইডি আবেদন, জন্ম নিবন্ধন, ভিসা প্রসেসিং এবং আরও অনেক সেবা — দ্রুত, নিরাপদ
-            ও পেশাদারভাবে হারবাং বাজার, চকরিয়ায়।
-          </p>
-
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-display font-bold text-foreground shadow-elegant transition-transform "
-            >
-              <MessageCircle className="h-5 w-5" /> এখনই হোয়াটসঅ্যাপ করুন
-            </a>
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 rounded-lg border border-border px-6 py-3 font-semibold text-foreground transition-colors hover:border-brand-accent hover:text-primary"
-            >
-              <LayoutGrid className="h-5 w-5" /> View Services
-            </Link>
+    <section className="border-b border-border bg-background px-4 py-12 sm:px-6 sm:py-16">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="flex items-center gap-3 text-sm text-muted-foreground"><MapPin className="h-4 w-4" /> হারবাং বাজার, চকরিয়া · Harbang Bazar</div>
+        <div className="mt-8 flex items-start gap-6 sm:gap-8">
+          <img src={logo.url} alt={`${shop.nameEn} লোগো`} width={120} height={120} className="hidden h-30 w-30 shrink-0 object-contain sm:block" />
+          <div className="min-w-0">
+            <h1 className="max-w-3xl text-[28px] font-bold leading-snug sm:text-[40px]">ডিজিটাল কম্পিউটার<br className="sm:hidden" /> ও সাইবার ক্যাফে</h1>
+            <p lang="en" className="mt-3 font-display text-base font-semibold text-primary sm:text-xl">Digital Computers &amp; Cyber Cafe</p>
+            <p className="mt-5 max-w-2xl text-muted-foreground">ই-পাসপোর্ট, এনআইডি, জন্ম নিবন্ধন ও অনলাইন আবেদন থেকে প্রিন্টিং—আপনার প্রয়োজনীয় নাগরিক ও কম্পিউটার সেবা, এক জায়গায়।</p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Button asChild><Link to="/services"><LayoutGrid /> সেবাসমূহ / Services</Link></Button>
+              <Button asChild variant="outline"><Link to="/login"><LogIn /> লগইন / Login</Link></Button>
+            </div>
           </div>
-
-          <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-border pt-8">
-            {heroStats.map((s) => (
-              <div key={s.label}>
-                <dt className="sr-only">{s.label}</dt>
-                <dd>
-                  <span className="block font-display text-2xl font-extrabold text-foreground sm:text-3xl">
-                    {s.num}
-                  </span>
-                  <span className="mt-1 block text-xs text-muted-foreground">{s.label}</span>
-                </dd>
-              </div>
-            ))}
-          </dl>
         </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          {floatCards.map((c, i) => {
-            const svc = services.find((s) => s.id === c.id);
-            return (
-              <div
-                key={c.id}
-                className={`flex items-center gap-4 rounded-lg border border-border bg-secondary p-5  ${
-                  i % 2 === 1 ? "sm:translate-y-6" : ""
-                }`}
-              >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary">
-                  <ServiceIcon name={c.icon} className="h-5 w-5" />
-                </span>
-                <span>
-                  <span className="block font-display text-sm font-bold text-foreground">
-                    {svc ? svc.title.split(" ")[0] : c.title}
-                  </span>
-                  <span className="mt-0.5 block text-xs text-primary">{c.status}</span>
-                </span>
-              </div>
-            );
-          })}
+        <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-border pt-5 text-sm text-muted-foreground">
+          <span>{shop.daysBn} · {shop.hoursBn}</span>
+          <a href={`tel:+${shop.whatsapp}`} className="inline-flex items-center gap-2 font-semibold text-primary"><Phone className="h-4 w-4" /> {shop.phoneBn}</a>
         </div>
       </div>
     </section>

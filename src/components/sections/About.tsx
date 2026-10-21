@@ -10,11 +10,11 @@ export function About() {
     <section id="about" className="bg-secondary px-4 py-16 sm:px-6">
       <div className="mx-auto grid max-w-[1200px] items-center gap-8 lg:grid-cols-2">
         <div className="relative">
-          <div className="rounded-lg border border-border bg-card p-8 shadow-elegant">
+          <div className="border-l-2 border-primary pl-6">
             <img
               src={logo.url}
               alt={`${shop.nameEn} লোগো`}
-              className="h-20 w-20 rounded-lg object-cover"
+              className="h-20 w-20 object-contain"
               width={80}
               height={80}
             />
@@ -41,13 +41,13 @@ export function About() {
           </div>
 
           <div className="mt-4 grid grid-cols-2 gap-4">
-            <div className="rounded-lg bg-background p-5 text-center">
+            <div className="rounded-lg border-t border-border p-5">
               <div className="font-display text-2xl font-extrabold text-foreground">10+</div>
               <div className="mt-1 text-xs text-muted-foreground">বছরের অভিজ্ঞতা</div>
             </div>
-            <div className="rounded-lg bg-primary p-5 text-center">
-              <div className="font-display text-2xl font-extrabold text-primary-foreground">7</div>
-              <div className="mt-1 text-xs text-primary-foreground/75">বিশেষজ্ঞ সেবা</div>
+            <div className="rounded-lg border-t border-border p-5">
+              <div className="font-display text-2xl font-extrabold text-primary">7</div>
+              <div className="mt-1 text-xs text-muted-foreground">বিশেষজ্ঞ সেবা</div>
             </div>
           </div>
         </div>

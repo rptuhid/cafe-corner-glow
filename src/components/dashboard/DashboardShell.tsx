@@ -46,8 +46,8 @@ export function DashboardShell({
           onClick={() => setOpen(false)}
           className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
             pathname === "/dashboard"
-              ? "bg-primary text-primary-foreground"
-              : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+              ? "border-l-2 border-primary bg-secondary text-primary"
+              : "border-l-2 border-transparent text-muted-foreground hover:bg-secondary hover:text-primary"
           }`}
         >
           <LayoutDashboard className="h-4 w-4" /> ড্যাশবোর্ড
@@ -60,8 +60,8 @@ export function DashboardShell({
           onClick={() => setOpen(false)}
           className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
             pathname === m.to
-              ? "bg-primary text-primary-foreground"
-              : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+              ? "border-l-2 border-primary bg-secondary text-primary"
+              : "border-l-2 border-transparent text-muted-foreground hover:bg-secondary hover:text-primary"
           }`}
         >
           <ModuleIcon name={m.icon} className="h-4 w-4 shrink-0" />
@@ -74,12 +74,12 @@ export function DashboardShell({
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto flex max-w-[1200px]">
-        <aside className="sticky top-0 hidden h-screen w-72 shrink-0 flex-col border-r border-border p-5 lg:flex">
+        <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-border bg-card p-5 lg:flex">
           <Link to="/" className="mb-7 flex items-center gap-3">
             <img
               src={logo.url}
               alt={`${shop.nameEn} লোগো`}
-              className="h-10 w-10 rounded-lg object-cover"
+              className="h-10 w-10 object-contain"
               width={40}
               height={40}
             />
@@ -97,7 +97,7 @@ export function DashboardShell({
         <div className="min-w-0 flex-1">
           <header className="flex items-center justify-between gap-3 border-b border-border px-4 py-4 lg:px-8">
             <div className="min-w-0">
-              <h1 className="truncate font-display text-xl font-extrabold text-foreground">{title}</h1>
+              <h1 className="font-display text-xl font-bold text-foreground">{title}</h1>
               {subtitle ? <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p> : null}
             </div>
             {role ? (
@@ -153,7 +153,7 @@ export function DashboardShell({
 
 export function ModulePlaceholder({ note }: { note: string }) {
   return (
-    <div className="rounded-lg border border-dashed border-border bg-secondary p-8 text-center">
+    <div className="border-l-4 border-border bg-secondary p-6">
       <p className="text-sm text-muted-foreground">{note}</p>
       <p className="mt-2 text-xs text-muted-foreground">
         এই মডিউলের বিস্তারিত কার্যকারিতা পরবর্তী ধাপে যুক্ত হবে।

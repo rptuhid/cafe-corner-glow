@@ -42,7 +42,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-xs font-semibold text-muted-foreground">{label}</span>
+      <span className="mb-1.5 block text-sm font-medium text-foreground">{label}</span>
       <span className="relative block">
         <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground">
           {icon}
@@ -166,16 +166,16 @@ function LoginPage() {
           <ArrowLeft className="h-4 w-4" /> হোমে ফিরে যান
         </Link>
 
-        <div className="rounded-lg border border-border bg-secondary p-8 ">
-          <div className="text-center">
+        <div className="rounded-lg border border-border bg-card p-6 sm:p-8 shadow-elegant ">
+          <div className="">
             <img
               src={logo.url}
               alt={`${shop.nameEn} লোগো`}
-              className="mx-auto h-16 w-16 rounded-lg object-cover"
+              className="h-16 w-16 object-contain"
               width={64}
               height={64}
             />
-            <h1 className="mt-5 font-display text-2xl font-extrabold text-foreground">
+            <h1 className="mt-5 font-display text-2xl font-bold text-primary">
               {mode === "signin" ? "লগইন করুন" : "নতুন অ্যাকাউন্ট"}
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">{shop.nameBn} ও সাইবার ক্যাফে</p>

@@ -1,19 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { shop } from "@/data/shop";
-
+import { shop, mapsUrl, whatsappUrl, gmailUrl } from "@/data/shop";
+import logo from "@/assets/shop-logo.jpg.asset.json";
 export function SiteFooter() {
-  return (
-    <footer className="border-t border-border bg-background px-4 py-10 text-center">
-      <p className="text-sm text-muted-foreground">
-        © {shop.year}{" "}
-        <Link to="/" className="font-semibold text-primary">
-          {shop.nameEn}
-        </Link>{" "}
-        · হারবাং বাজার, চকরিয়া, Cox&apos;s Bazar · Proprietor: {shop.proprietor}
-      </p>
-      <p className="mt-2 text-xs text-muted-foreground">
-        সমাজের জন্য বিশ্বস্ত ডিজিটাল সেবা · সর্বস্বত্ব সংরক্ষিত
-      </p>
-    </footer>
-  );
+ return <footer className="bg-primary px-4 pt-12 pb-6 text-primary-foreground sm:px-6"><div className="mx-auto max-w-[1200px]"><div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"><div><img src={logo.url} alt={shop.nameEn} width={56} height={56} className="h-14 w-14 object-contain" /><h3 className="mt-4 text-base font-semibold">{shop.nameBn}</h3><p lang="en" className="mt-2 text-sm">Digital Computers &amp; Cyber Cafe</p></div><div><h3 className="text-base font-semibold">ঠিকানা / Address</h3><p className="mt-4 text-sm text-primary-foreground/85">{shop.addressBn}</p><a href={mapsUrl} target="_blank" rel="noreferrer" className="mt-3 inline-block text-sm underline underline-offset-4">মানচিত্রে দেখুন</a></div><div><h3 className="text-base font-semibold">সময় / Office hours</h3><p className="mt-4 text-sm">{shop.daysBn}</p><p className="mt-2 text-sm">{shop.hoursBn}</p><a href={`tel:+${shop.whatsapp}`} className="mt-3 block text-sm">{shop.phoneBn}</a><div className="mt-3 flex gap-4 text-sm"><a href={whatsappUrl} target="_blank" rel="noreferrer">WhatsApp</a><a href={gmailUrl} target="_blank" rel="noreferrer">Gmail</a></div></div><div><h3 className="text-base font-semibold">লিংক / Quick links</h3><div className="mt-4 flex flex-col gap-3 text-sm"><Link to="/services">সেবাসমূহ</Link><Link to="/pricing">মূল্য তালিকা</Link><Link to="/about">আমাদের সম্পর্কে</Link><Link to="/contact">যোগাযোগ</Link><Link to="/login">লগইন</Link></div></div></div><p className="mt-10 border-t border-primary-foreground/20 pt-5 text-xs text-primary-foreground/85">© {shop.year} {shop.nameEn} · Proprietor: {shop.proprietor} · সর্বস্বত্ব সংরক্ষিত</p></div></footer>;
 }

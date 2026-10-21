@@ -9,7 +9,7 @@ function Stars({ rating }: { rating: number }) {
         <Star
           key={i}
           className={`h-4 w-4 ${
-            i <= rating ? "fill-primary text-warning" : "text-muted-foreground/30"
+            i <= rating ? "fill-primary text-primary" : "text-muted-foreground/30"
           }`}
         />
       ))}
@@ -33,7 +33,7 @@ export function Reviews() {
           sub="হারবাং বাজার ও আশপাশের এলাকার গ্রাহকদের অভিজ্ঞতা।"
         />
 
-        <div className="mx-auto mt-10 flex w-fit items-center gap-4 rounded-lg border border-border bg-card px-6 py-4 shadow-elegant">
+        <div className="mt-8 flex w-fit items-center gap-4 border-l-2 border-primary pl-5">
           <span className="font-display text-4xl font-extrabold text-primary">
             {ratingAverage.toFixed(1)}
           </span>

@@ -1,6 +1,6 @@
 import { LayoutGrid } from "lucide-react";
 import { services } from "@/data/shop";
-import { ServiceIcon, toneClasses } from "@/components/shop/ServiceIcon";
+import { ServiceIcon } from "@/components/shop/ServiceIcon";
 import { SectionHeading } from "@/components/shop/SectionHeading";
 
 export function Services() {
@@ -23,12 +23,10 @@ export function Services() {
           {services.map((s) => (
             <article
               key={s.id}
-              className="group rounded-lg border border-border bg-card p-7 shadow-elegant transition-all  hover:shadow-elegant"
+              className="group rounded-lg border border-border bg-card p-6 shadow-elegant transition-all  hover:shadow-elegant"
             >
               <span
-                className={`flex h-14 w-14 items-center justify-center rounded-lg ${
-                  toneClasses[s.tone] ?? toneClasses["sky"]
-                }`}
+                className="flex h-6 w-6 items-center justify-center text-primary"
               >
                 <ServiceIcon name={s.icon} className="h-6 w-6" />
               </span>
