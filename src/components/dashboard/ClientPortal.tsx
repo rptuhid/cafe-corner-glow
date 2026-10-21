@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Loader2, PackagePlus, Pencil, UserRound } from "lucide-react";
@@ -8,11 +9,11 @@ import { roleLabel } from "@/data/dashboard";
 import { useRole } from "@/hooks/useRole";
 import { OrdersTable, statusLabel } from "./OrdersTable";
 
-const card = "rounded-2xl border border-white/10 bg-white/5 p-6";
+const card = "border-b border-border bg-transparent py-6";
 const input =
-  "w-full rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-sm text-white placeholder:text-white/35 focus:border-brand-accent focus:outline-none";
+  "w-full rounded-lg border border-border bg-secondary px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-brand-accent focus:outline-none";
 const btn =
-  "inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-5 py-2.5 font-display text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-2.5 font-display text-sm font-bold text-primary-foreground transition-transform  disabled:opacity-60";
 
 export function ClientPortal() {
   const { role } = useRole();
@@ -120,7 +121,7 @@ export function ClientPortal() {
 
   if (me.isPending) {
     return (
-      <div className="flex items-center gap-2 text-sm text-white/60">
+      <div className="flex items-center gap-2 text-sm text-muted-foreground">
         <Loader2 className="h-4 w-4 animate-spin" /> লোড হচ্ছে…
       </div>
     );
@@ -131,22 +132,22 @@ export function ClientPortal() {
   return (
     <div className="space-y-6">
       {notice ? (
-        <p className="rounded-xl border border-emerald-400/25 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200">
+        <p className="rounded-lg border border-success/25 bg-success-tint px-4 py-3 text-sm text-success">
           {notice}
         </p>
       ) : null}
 
       <div className={card}>
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="font-display text-base font-bold text-white">আমার অর্ডার ও সেবা</h2>
-          <button onClick={() => setOrdering((v) => !v)} className={btn}>
+          <h2 className="font-display text-base font-bold text-foreground">আমার অর্ডার ও সেবা</h2>
+          <Button onClick={() => setOrdering((v) => !v)} className={btn}>
             <PackagePlus className="h-4 w-4" /> অর্ডার করুন
-          </button>
+          </Button>
         </div>
 
         {ordering ? (
           <form
-            className="mt-4 grid gap-3 rounded-xl border border-white/10 bg-white/5 p-4"
+            className="mt-4 grid gap-3 rounded-lg border border-border bg-secondary p-4"
             onSubmit={(e) => {
               e.preventDefault();
               placeOrder.mutate(e.currentTarget);
@@ -155,21 +156,21 @@ export function ClientPortal() {
             <input name="service_title" required placeholder="কোন সেবা প্রয়োজন? (যেমন: ছবি প্রিন্ট)" className={input} />
             <textarea name="details" rows={3} placeholder="কাজের বিবরণ" className={input} />
             <div>
-              <button type="submit" disabled={placeOrder.isPending} className={btn}>
+              <Button type="submit" disabled={placeOrder.isPending} className={btn}>
                 {placeOrder.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : null} জমা দিন
-              </button>
+              </Button>
             </div>
-            {placeOrder.isError ? <p className="text-sm text-red-300">অর্ডার জমা হয়নি।</p> : null}
+            {placeOrder.isError ? <p className="text-sm text-destructive">অর্ডার জমা হয়নি।</p> : null}
           </form>
         ) : null}
 
         <div className="mt-4">
           {orders.isPending ? (
-            <div className="flex items-center gap-2 text-sm text-white/60">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Loader2 className="h-4 w-4 animate-spin" /> লোড হচ্ছে…
             </div>
           ) : (orders.data?.length ?? 0) === 0 ? (
-            <p className="text-sm text-white/55">এখনো কোনো অর্ডার নেই।</p>
+            <p className="text-sm text-muted-foreground">এখনো কোনো অর্ডার নেই।</p>
           ) : (
             <OrdersTable orders={orders.data ?? []} />
           )}
@@ -179,22 +180,22 @@ export function ClientPortal() {
       <div className={card}>
         <div className="flex flex-wrap items-center gap-4">
           {avatarSrc ? (
-            <img src={avatarSrc} alt="প্রোফাইল ছবি" className="h-16 w-16 rounded-2xl object-cover" />
+            <img src={avatarSrc} alt="প্রোফাইল ছবি" className="h-16 w-16 rounded-lg object-cover" />
           ) : (
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10">
-              <UserRound className="h-7 w-7 text-white/50" />
+            <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-secondary">
+              <UserRound className="h-7 w-7 text-muted-foreground" />
             </div>
           )}
           <div className="min-w-0 flex-1">
-            <h2 className="font-display text-lg font-bold text-white">{p?.full_name || "নাম নেই"}</h2>
-            <p className="text-sm text-white/55">
-              ক্লায়েন্ট আইডি: <span className="font-semibold text-brand-accent">{p?.client_code || "—"}</span>
+            <h2 className="font-display text-lg font-bold text-foreground">{p?.full_name || "নাম নেই"}</h2>
+            <p className="text-sm text-muted-foreground">
+              ক্লায়েন্ট আইডি: <span className="font-semibold text-primary">{p?.client_code || "—"}</span>
               {role ? ` • ${roleLabel[role]}` : ""}
             </p>
           </div>
-          <button onClick={() => setEditing((v) => !v)} className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-4 py-2 text-sm font-semibold text-white/80 hover:bg-white/8">
+          <Button onClick={() => setEditing((v) => !v)} className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-semibold text-muted-foreground hover:bg-secondary">
             <Pencil className="h-4 w-4" /> তথ্য পরিবর্তন
-          </button>
+          </Button>
         </div>
 
         <dl className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -209,22 +210,22 @@ export function ClientPortal() {
               ],
             ] as Array<[string, string]>
           ).map(([label, value]) => (
-            <div key={label} className="flex items-center justify-between gap-3 border-b border-white/8 pb-2">
-              <dt className="text-sm text-white/55">{label}</dt>
-              <dd className="truncate text-sm font-semibold text-white">{value}</dd>
+            <div key={label} className="flex items-center justify-between gap-3 border-b border-border pb-2">
+              <dt className="text-sm text-muted-foreground">{label}</dt>
+              <dd className="truncate text-sm font-semibold text-foreground">{value}</dd>
             </div>
           ))}
         </dl>
 
         {(pending.data?.length ?? 0) > 0 ? (
-          <p className="mt-4 text-xs text-amber-200">
+          <p className="mt-4 text-xs text-warning">
             একটি পরিবর্তনের অনুরোধ অ্যাডমিনের অনুমোদনের অপেক্ষায় আছে।
           </p>
         ) : null}
 
         {editing ? (
           <form
-            className="mt-5 grid gap-3 border-t border-white/10 pt-5 sm:grid-cols-2"
+            className="mt-5 grid gap-3 border-t border-border pt-5 sm:grid-cols-2"
             onSubmit={(e) => {
               e.preventDefault();
               requestChange.mutate(e.currentTarget);
@@ -234,20 +235,20 @@ export function ClientPortal() {
             <input name="phone" defaultValue={p?.phone ?? ""} placeholder="মোবাইল" className={input} />
             <input name="email" defaultValue={p?.email ?? ""} placeholder="ইমেইল" className={input} />
             <input name="address" defaultValue={p?.address ?? ""} placeholder="ঠিকানা" className={input} />
-            <input name="avatar" type="file" accept="image/*" className={`${input} file:mr-3 file:rounded-lg file:border-0 file:bg-white/10 file:px-3 file:py-1 file:text-white`} />
+            <input name="avatar" type="file" accept="image/*" className={`${input} file:mr-3 file:rounded-lg file:border-0 file:bg-secondary file:px-3 file:py-1 file:text-foreground`} />
             <div className="flex items-center gap-3">
-              <button type="submit" disabled={requestChange.isPending} className={btn}>
+              <Button type="submit" disabled={requestChange.isPending} className={btn}>
                 {requestChange.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : null} অনুরোধ পাঠান
-              </button>
+              </Button>
             </div>
             {requestChange.isError ? (
-              <p className="text-sm text-red-300 sm:col-span-2">অনুরোধ পাঠানো যায়নি। আবার চেষ্টা করুন।</p>
+              <p className="text-sm text-destructive sm:col-span-2">অনুরোধ পাঠানো যায়নি। আবার চেষ্টা করুন।</p>
             ) : null}
           </form>
         ) : null}
       </div>
 
-      <p className="text-xs text-white/40">
+      <p className="text-xs text-muted-foreground">
         অর্ডারের অবস্থা: {Object.values(statusLabel).join(" • ")}
       </p>
     </div>

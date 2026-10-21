@@ -5,8 +5,8 @@ import { SectionHeading } from "@/components/shop/SectionHeading";
 
 export function Pricing() {
   return (
-    <section id="pricing" className="bg-background px-4 py-20 sm:px-6">
-      <div className="mx-auto max-w-7xl">
+    <section id="pricing" className="bg-background px-4 py-16 sm:px-6">
+      <div className="mx-auto max-w-[1200px]">
         <SectionHeading
           center
           badge={
@@ -19,19 +19,19 @@ export function Pricing() {
           sub="আমাদের সবচেয়ে জনপ্রিয় সেবার শুরুর মূল্য। চূড়ান্ত চার্জ জটিলতা ও নথির প্রয়োজনীয়তার উপর নির্ভর করে পরিবর্তিত হতে পারে।"
         />
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {pricing.map((p) => (
             <div
               key={p.id}
-              className={`flex items-center gap-4 rounded-2xl border p-5 transition-all hover:-translate-y-0.5 hover:shadow-hover ${
+              className={`flex items-center gap-4 rounded-lg border p-5 transition-all  hover:shadow-elegant ${
                 p.featured
-                  ? "border-transparent bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-hover"
+                  ? "border-transparent bg-primary text-primary-foreground shadow-elegant"
                   : "border-border bg-card shadow-elegant"
               }`}
             >
               <span
-                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
-                  p.featured ? "bg-white/15 text-white" : (toneClasses[p.tone] ?? "")
+                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${
+                  p.featured ? "bg-secondary text-foreground" : (toneClasses[p.tone] ?? "")
                 }`}
               >
                 <ServiceIcon name={p.icon} className="h-5 w-5" />

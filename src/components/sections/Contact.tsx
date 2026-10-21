@@ -4,8 +4,8 @@ import { SectionHeading } from "@/components/shop/SectionHeading";
 
 export function Contact() {
   return (
-    <section id="contact" className="bg-brand-soft px-4 py-20 sm:px-6">
-      <div className="mx-auto max-w-7xl">
+    <section id="contact" className="bg-secondary px-4 py-16 sm:px-6">
+      <div className="mx-auto max-w-[1200px]">
         <SectionHeading
           center
           badge={
@@ -18,15 +18,15 @@ export function Contact() {
           sub="হারবাং বাজারের প্রাণকেন্দ্রে — সহজে খুঁজে পাওয়া যায়, সবসময় আপনাকে সাহায্য করতে প্রস্তুত।"
         />
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
           <div className="space-y-4">
             <a
               href={mapsUrl}
               target="_blank"
               rel="noreferrer"
-              className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-elegant transition-transform hover:-translate-y-0.5"
+              className="flex items-start gap-4 rounded-lg border border-border bg-card p-5 shadow-elegant transition-transform "
             >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <MapPin className="h-5 w-5" />
               </span>
               <span>
@@ -37,9 +37,9 @@ export function Contact() {
 
             <a
               href={`tel:+${shop.whatsapp}`}
-              className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-elegant transition-transform hover:-translate-y-0.5"
+              className="flex items-start gap-4 rounded-lg border border-border bg-card p-5 shadow-elegant transition-transform "
             >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <Phone className="h-5 w-5" />
               </span>
               <span>
@@ -52,9 +52,9 @@ export function Contact() {
               href={gmailUrl}
               target="_blank"
               rel="noreferrer"
-              className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-elegant transition-transform hover:-translate-y-0.5"
+              className="flex items-start gap-4 rounded-lg border border-border bg-card p-5 shadow-elegant transition-transform "
             >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <Mail className="h-5 w-5" />
               </span>
               <span>
@@ -65,8 +65,8 @@ export function Contact() {
               </span>
             </a>
 
-            <div className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-elegant">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <div className="flex items-start gap-4 rounded-lg border border-border bg-card p-5 shadow-elegant">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <Clock className="h-5 w-5" />
               </span>
               <span>
@@ -81,13 +81,13 @@ export function Contact() {
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-whatsapp px-6 py-4 font-display font-bold text-white shadow-hover transition-transform hover:-translate-y-0.5"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-4 font-display font-bold text-foreground shadow-elegant transition-transform "
             >
               <MessageCircle className="h-5 w-5" /> হোয়াটসঅ্যাপে বার্তা পাঠান
             </a>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-elegant">
+          <div className="overflow-hidden rounded-lg border border-border bg-card shadow-elegant">
             <iframe
               title="Digital Computer & Cyber Cafe — Harbang Bazar মানচিত্র"
               src={`https://www.google.com/maps?q=${shop.mapsQuery}&output=embed`}

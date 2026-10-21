@@ -22,13 +22,13 @@ const map = {
 } as const;
 
 export const toneClasses: Record<string, string> = {
-  sky: "bg-sky-100 text-sky-700",
-  green: "bg-emerald-100 text-emerald-700",
-  amber: "bg-amber-100 text-amber-700",
-  violet: "bg-violet-100 text-violet-700",
-  cyan: "bg-cyan-100 text-cyan-700",
-  red: "bg-rose-100 text-rose-700",
-  emerald: "bg-green-100 text-green-700",
+  sky: "bg-secondary text-primary",
+  green: "bg-secondary text-primary",
+  amber: "bg-secondary text-primary",
+  violet: "bg-secondary text-primary",
+  cyan: "bg-secondary text-primary",
+  red: "bg-secondary text-primary",
+  emerald: "bg-secondary text-primary",
 };
 
 export function ServiceIcon({ name, className }: { name: IconName; className?: string }) {

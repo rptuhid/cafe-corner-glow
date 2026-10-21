@@ -16,11 +16,10 @@ export function PageShell({ children }: { children: ReactNode }) {
 
 export function PageHero({ title, sub }: { title: string; sub: string }) {
   return (
-    <section className="relative overflow-hidden bg-ink px-4 py-16 sm:py-20">
-      <div className="absolute inset-0 grid-lines opacity-70" aria-hidden="true" />
+    <section className="relative overflow-hidden bg-background px-4 py-16 sm:py-16">
       <div className="relative mx-auto max-w-3xl text-center">
-        <h1 className="text-3xl font-extrabold text-white sm:text-4xl">{title}</h1>
-        <p className="mt-4 text-white/65">{sub}</p>
+        <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl">{title}</h1>
+        <p className="mt-4 text-muted-foreground">{sub}</p>
       </div>
     </section>
   );

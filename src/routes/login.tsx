@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ArrowLeft, Loader2, Lock, Mail, MapPin, Phone, User } from "lucide-react";
@@ -28,7 +29,7 @@ export const Route = createFileRoute("/login")({
 });
 
 const inputClass =
-  "w-full rounded-xl border border-white/15 bg-white/5 py-3 pr-3 pl-10 text-sm text-white placeholder:text-white/35 focus:border-brand-accent focus:outline-none";
+  "w-full rounded-lg border border-border bg-secondary py-3 pr-3 pl-10 text-sm text-foreground placeholder:text-muted-foreground focus:border-brand-accent focus:outline-none";
 
 function Field({
   label,
@@ -41,9 +42,9 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-xs font-semibold text-white/70">{label}</span>
+      <span className="mb-1.5 block text-xs font-semibold text-muted-foreground">{label}</span>
       <span className="relative block">
-        <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-white/40">
+        <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground">
           {icon}
         </span>
         {children}
@@ -156,39 +157,38 @@ function LoginPage() {
   }
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-ink px-4 py-14">
-      <div className="absolute inset-0 grid-lines opacity-60" aria-hidden="true" />
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4 py-14">
       <div className="relative w-full max-w-md">
         <Link
           to="/"
-          className="mb-6 inline-flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-brand-accent"
+          className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
         >
           <ArrowLeft className="h-4 w-4" /> হোমে ফিরে যান
         </Link>
 
-        <div className="rounded-3xl border border-white/10 bg-white/6 p-8 backdrop-blur-xl">
+        <div className="rounded-lg border border-border bg-secondary p-8 ">
           <div className="text-center">
             <img
               src={logo.url}
               alt={`${shop.nameEn} লোগো`}
-              className="mx-auto h-16 w-16 rounded-2xl object-cover"
+              className="mx-auto h-16 w-16 rounded-lg object-cover"
               width={64}
               height={64}
             />
-            <h1 className="mt-5 font-display text-2xl font-extrabold text-white">
+            <h1 className="mt-5 font-display text-2xl font-extrabold text-foreground">
               {mode === "signin" ? "লগইন করুন" : "নতুন অ্যাকাউন্ট"}
             </h1>
-            <p className="mt-2 text-sm text-white/60">{shop.nameBn} ও সাইবার ক্যাফে</p>
+            <p className="mt-2 text-sm text-muted-foreground">{shop.nameBn} ও সাইবার ক্যাফে</p>
           </div>
 
-          <div className="mt-7 grid grid-cols-2 gap-2 rounded-xl bg-white/8 p-1">
+          <div className="mt-7 grid grid-cols-2 gap-2 rounded-lg bg-secondary p-1">
             {(
               [
                 ["signin", "লগইন"],
                 ["signup", "রেজিস্টার"],
               ] as const
             ).map(([key, label]) => (
-              <button
+              <Button
                 key={key}
                 type="button"
                 onClick={() => {
@@ -197,11 +197,11 @@ function LoginPage() {
                   setMessage(null);
                 }}
                 className={`rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
-                  mode === key ? "bg-primary text-primary-foreground" : "text-white/70"
+                  mode === key ? "bg-primary text-primary-foreground" : "text-muted-foreground"
                 }`}
               >
                 {label}
-              </button>
+              </Button>
             ))}
           </div>
 
@@ -277,31 +277,31 @@ function LoginPage() {
               />
             </Field>
 
-            {error ? <p className="text-sm text-red-300">{error}</p> : null}
-            {message ? <p className="text-sm text-emerald-300">{message}</p> : null}
+            {error ? <p className="text-sm text-destructive">{error}</p> : null}
+            {message ? <p className="text-sm text-success">{message}</p> : null}
 
-            <button
+            <Button
               type="submit"
               disabled={busy}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-6 py-3 font-display font-bold text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-display font-bold text-primary-foreground transition-transform  disabled:opacity-60"
             >
               {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
               {mode === "signin" ? "ড্যাশবোর্ডে প্রবেশ" : "অ্যাকাউন্ট তৈরি করুন"}
-            </button>
+            </Button>
           </form>
 
-          <div className="my-5 flex items-center gap-3 text-xs text-white/35">
-            <span className="h-px flex-1 bg-white/10" /> অথবা <span className="h-px flex-1 bg-white/10" />
+          <div className="my-5 flex items-center gap-3 text-xs text-muted-foreground">
+            <span className="h-px flex-1 bg-secondary" /> অথবা <span className="h-px flex-1 bg-secondary" />
           </div>
 
-          <button
+          <Button
             type="button"
             onClick={handleGoogle}
             disabled={busy}
-            className="w-full rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 disabled:opacity-60"
+            className="w-full rounded-lg border border-border bg-secondary px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary disabled:opacity-60"
           >
             Google দিয়ে চালিয়ে যান
-          </button>
+          </Button>
         </div>
       </div>
     </div>

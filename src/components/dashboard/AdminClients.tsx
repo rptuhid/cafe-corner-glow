@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Check, Loader2, Pencil, UserRound, X } from "lucide-react";
@@ -6,13 +7,13 @@ import { formatBdPhone } from "@/lib/phone";
 import { signedAvatarUrl } from "@/lib/avatar";
 import { money, statusLabel } from "./OrdersTable";
 
-const card = "rounded-2xl border border-white/10 bg-white/5 p-6";
+const card = "border-b border-border bg-transparent py-6";
 const input =
-  "w-full rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/35 focus:border-brand-accent focus:outline-none";
+  "w-full rounded-lg border border-border bg-secondary px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-brand-accent focus:outline-none";
 const btn =
-  "inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-4 py-2 font-display text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 font-display text-sm font-bold text-primary-foreground transition-transform  disabled:opacity-60";
 const ghost =
-  "inline-flex items-center gap-2 rounded-xl border border-white/15 px-3 py-1.5 text-xs font-semibold text-white/80 hover:bg-white/8 disabled:opacity-60";
+  "inline-flex items-center gap-2 rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:bg-secondary disabled:opacity-60";
 
 function Avatar({ path, size = "h-10 w-10" }: { path?: string | null; size?: string }) {
   const [src, setSrc] = useState<string | null>(null);
@@ -24,10 +25,10 @@ function Avatar({ path, size = "h-10 w-10" }: { path?: string | null; size?: str
     };
   }, [path]);
   return src ? (
-    <img src={src} alt="ছবি" className={`${size} rounded-xl object-cover`} />
+    <img src={src} alt="ছবি" className={`${size} rounded-lg object-cover`} />
   ) : (
-    <div className={`${size} flex items-center justify-center rounded-xl bg-white/10`}>
-      <UserRound className="h-1/2 w-1/2 text-white/45" />
+    <div className={`${size} flex items-center justify-center rounded-lg bg-secondary`}>
+      <UserRound className="h-1/2 w-1/2 text-muted-foreground" />
     </div>
   );
 }
@@ -158,7 +159,7 @@ export function AdminClients() {
 
   if (profiles.isPending) {
     return (
-      <div className="flex items-center gap-2 text-sm text-white/60">
+      <div className="flex items-center gap-2 text-sm text-muted-foreground">
         <Loader2 className="h-4 w-4 animate-spin" /> লোড হচ্ছে…
       </div>
     );
@@ -166,13 +167,13 @@ export function AdminClients() {
   if (profiles.isError) {
     return (
       <div className={card}>
-        <p className="text-sm text-red-300">ক্লায়েন্ট তালিকা আনা যায়নি।</p>
+        <p className="text-sm text-destructive">ক্লায়েন্ট তালিকা আনা যায়নি।</p>
       </div>
     );
   }
 
   const byId = new Map(profiles.data.map((p) => [p.id, p]));
-  const clients = clientIds.data ? profiles.data.filter((p) => clientIds.data!.has(p.id)) : profiles.data;
+  const clients = clientIds.data ? profiles.data.filter((p) => clientIds.data?.has(p.id)) : profiles.data;
 
   // ---------- Client profile view (no orders, no role tools) ----------
   const selected = selectedId ? byId.get(selectedId) : null;
@@ -180,21 +181,21 @@ export function AdminClients() {
     const pend = (requests.data ?? []).filter((r) => r.user_id === selected.id);
     return (
       <div className="space-y-6">
-        <button className={ghost} onClick={() => { setSelectedId(null); setEditing(false); }}>
+        <Button className={ghost} onClick={() => { setSelectedId(null); setEditing(false); }}>
           <ArrowLeft className="h-3.5 w-3.5" /> ক্লায়েন্ট তালিকায় ফিরুন
-        </button>
+        </Button>
         <div className={card}>
           <div className="flex flex-wrap items-center gap-4">
             <Avatar path={selected.avatar_url} size="h-20 w-20" />
             <div className="min-w-0 flex-1">
-              <h2 className="font-display text-xl font-bold text-white">{selected.full_name || "নাম নেই"}</h2>
-              <p className="text-sm text-white/55">
-                ক্লায়েন্ট আইডি: <span className="font-semibold text-brand-accent">{selected.client_code || "—"}</span>
+              <h2 className="font-display text-xl font-bold text-foreground">{selected.full_name || "নাম নেই"}</h2>
+              <p className="text-sm text-muted-foreground">
+                ক্লায়েন্ট আইডি: <span className="font-semibold text-primary">{selected.client_code || "—"}</span>
               </p>
             </div>
-            <button className={ghost} onClick={() => setEditing((v) => !v)}>
+            <Button className={ghost} onClick={() => setEditing((v) => !v)}>
               <Pencil className="h-3.5 w-3.5" /> তথ্য এডিট
-            </button>
+            </Button>
           </div>
           <dl className="mt-5 grid gap-3 sm:grid-cols-2">
             {(
@@ -205,15 +206,15 @@ export function AdminClients() {
                 ["যুক্ত হয়েছেন", new Date(selected.created_at).toLocaleDateString("bn-BD")],
               ] as Array<[string, string]>
             ).map(([l, v]) => (
-              <div key={l} className="flex justify-between gap-3 border-b border-white/8 pb-2">
-                <dt className="text-sm text-white/55">{l}</dt>
-                <dd className="truncate text-sm font-semibold text-white">{v}</dd>
+              <div key={l} className="flex justify-between gap-3 border-b border-border pb-2">
+                <dt className="text-sm text-muted-foreground">{l}</dt>
+                <dd className="truncate text-sm font-semibold text-foreground">{v}</dd>
               </div>
             ))}
           </dl>
           {editing ? (
             <form
-              className="mt-5 grid gap-3 border-t border-white/10 pt-5 sm:grid-cols-2"
+              className="mt-5 grid gap-3 border-t border-border pt-5 sm:grid-cols-2"
               onSubmit={(e) => {
                 e.preventDefault();
                 saveProfile.mutate({ id: selected.id, form: e.currentTarget });
@@ -224,7 +225,7 @@ export function AdminClients() {
               <input name="email" defaultValue={selected.email ?? ""} placeholder="ইমেইল" className={input} />
               <input name="address" defaultValue={selected.address ?? ""} placeholder="ঠিকানা" className={input} />
               <div>
-                <button type="submit" disabled={saveProfile.isPending} className={btn}>সংরক্ষণ করুন</button>
+                <Button type="submit" disabled={saveProfile.isPending} className={btn}>সংরক্ষণ করুন</Button>
               </div>
             </form>
           ) : null}
@@ -232,11 +233,11 @@ export function AdminClients() {
 
         {pend.length ? (
           <div className={card}>
-            <h3 className="font-display text-sm font-bold text-amber-200">তথ্য পরিবর্তনের অনুরোধ</h3>
+            <h3 className="font-display text-sm font-bold text-warning">তথ্য পরিবর্তনের অনুরোধ</h3>
             <div className="mt-3 space-y-3">
               {pend.map((req) => (
-                <div key={req.id} className="rounded-lg border border-amber-400/25 bg-amber-400/5 p-3">
-                  <ul className="space-y-0.5 text-xs text-white/75">
+                <div key={req.id} className="rounded-lg border border-warning/25 bg-warning-tint p-3">
+                  <ul className="space-y-0.5 text-xs text-muted-foreground">
                     {req.full_name ? <li>নাম: {req.full_name}</li> : null}
                     {req.phone ? <li>মোবাইল: {req.phone}</li> : null}
                     {req.email ? <li>ইমেইল: {req.email}</li> : null}
@@ -244,12 +245,12 @@ export function AdminClients() {
                     {req.avatar_url ? <li>নতুন প্রোফাইল ছবি</li> : null}
                   </ul>
                   <div className="mt-2 flex gap-2">
-                    <button className={ghost} disabled={reviewRequest.isPending} onClick={() => reviewRequest.mutate({ id: req.id, approve: true })}>
+                    <Button className={ghost} disabled={reviewRequest.isPending} onClick={() => reviewRequest.mutate({ id: req.id, approve: true })}>
                       <Check className="h-3.5 w-3.5" /> অনুমোদন
-                    </button>
-                    <button className={ghost} disabled={reviewRequest.isPending} onClick={() => reviewRequest.mutate({ id: req.id, approve: false })}>
+                    </Button>
+                    <Button className={ghost} disabled={reviewRequest.isPending} onClick={() => reviewRequest.mutate({ id: req.id, approve: false })}>
                       <X className="h-3.5 w-3.5" /> বাতিল
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -264,18 +265,18 @@ export function AdminClients() {
   return (
     <div className="space-y-6">
       <div className={card}>
-        <h2 className="font-display text-base font-bold text-white">
-          অর্ডার ম্যানেজমেন্ট <span className="text-white/45">({orders.data?.length ?? 0})</span>
+        <h2 className="font-display text-base font-bold text-foreground">
+          অর্ডার ম্যানেজমেন্ট <span className="text-muted-foreground">({orders.data?.length ?? 0})</span>
         </h2>
         <div className="mt-4 overflow-x-auto">
           {orders.isPending ? (
-            <Loader2 className="h-4 w-4 animate-spin text-white/60" />
+            <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
           ) : (orders.data?.length ?? 0) === 0 ? (
-            <p className="text-sm text-white/55">এখনো কোনো অর্ডার নেই।</p>
+            <p className="text-sm text-muted-foreground">এখনো কোনো অর্ডার নেই।</p>
           ) : (
             <table className="w-full min-w-[820px] text-left text-sm">
-              <thead className="text-xs text-white/50">
-                <tr className="border-b border-white/10">
+              <thead className="text-xs text-muted-foreground">
+                <tr className="border-b border-border">
                   <th className="py-2 pr-3">তারিখ</th>
                   <th className="py-2 pr-3">ক্লায়েন্ট</th>
                   <th className="py-2 pr-3">সেবা</th>
@@ -291,15 +292,15 @@ export function AdminClients() {
                 {(orders.data ?? []).map((o) => {
                   const c = byId.get(o.client_id);
                   return (
-                    <tr key={o.id} className="border-b border-white/6 align-top text-white/85">
+                    <tr key={o.id} className="border-b border-border align-top text-muted-foreground">
                       <td className="py-2.5 pr-3 whitespace-nowrap">{new Date(o.created_at).toLocaleDateString("bn-BD")}</td>
                       <td className="py-2.5 pr-3">
-                        <span className="font-semibold text-white">{c?.full_name || "—"}</span>
-                        <p className="text-xs text-brand-accent">{c?.client_code || ""}</p>
+                        <span className="font-semibold text-foreground">{c?.full_name || "—"}</span>
+                        <p className="text-xs text-primary">{c?.client_code || ""}</p>
                       </td>
                       <td className="py-2.5 pr-3">
-                        <span className="font-semibold text-white">{o.service_title}</span>
-                        {o.details ? <p className="text-xs text-white/50">{o.details}</p> : null}
+                        <span className="font-semibold text-foreground">{o.service_title}</span>
+                        {o.details ? <p className="text-xs text-muted-foreground">{o.details}</p> : null}
                         {editOrder === o.id ? (
                           <form
                             className="mt-3 grid min-w-[420px] gap-2 sm:grid-cols-2"
@@ -313,27 +314,27 @@ export function AdminClients() {
                             <input name="progress" type="number" min={0} max={100} defaultValue={o.progress} placeholder="অগ্রগতি %" className={input} />
                             <select name="status" defaultValue={o.status} className={input}>
                               {Object.entries(statusLabel).map(([v, l]) => (
-                                <option key={v} value={v} className="bg-ink">{l}</option>
+                                <option key={v} value={v} className="bg-background">{l}</option>
                               ))}
                             </select>
                             <input name="admin_note" defaultValue={o.admin_note ?? ""} placeholder="নোট" className={`${input} sm:col-span-2`} />
-                            <button type="submit" disabled={saveOrder.isPending} className={btn}>আপডেট</button>
+                            <Button type="submit" disabled={saveOrder.isPending} className={btn}>আপডেট</Button>
                           </form>
                         ) : null}
                       </td>
                       <td className="py-2.5 pr-3">{money(o.total_amount)}</td>
                       <td className="py-2.5 pr-3">{money(o.advance_amount)}</td>
-                      <td className="py-2.5 pr-3 font-semibold text-amber-200">{money(o.due_amount)}</td>
+                      <td className="py-2.5 pr-3 font-semibold text-warning">{money(o.due_amount)}</td>
                       <td className="py-2.5 pr-3">{o.progress}%</td>
                       <td className="py-2.5 pr-3">
-                        <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs whitespace-nowrap">
+                        <span className="rounded border border-border bg-secondary px-2.5 py-1 text-xs whitespace-nowrap">
                           {statusLabel[o.status] ?? o.status}
                         </span>
                       </td>
                       <td className="py-2.5">
-                        <button className={ghost} onClick={() => setEditOrder(editOrder === o.id ? null : o.id)}>
+                        <Button className={ghost} onClick={() => setEditOrder(editOrder === o.id ? null : o.id)}>
                           <Pencil className="h-3.5 w-3.5" />
-                        </button>
+                        </Button>
                       </td>
                     </tr>
                   );
@@ -345,13 +346,13 @@ export function AdminClients() {
       </div>
 
       <div className={card}>
-        <h2 className="font-display text-base font-bold text-white">
-          ক্লায়েন্ট ডিরেক্টরি <span className="text-white/45">({clients.length})</span>
+        <h2 className="font-display text-base font-bold text-foreground">
+          ক্লায়েন্ট ডিরেক্টরি <span className="text-muted-foreground">({clients.length})</span>
         </h2>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full min-w-[680px] text-left text-sm">
-            <thead className="text-xs text-white/50">
-              <tr className="border-b border-white/10">
+            <thead className="text-xs text-muted-foreground">
+              <tr className="border-b border-border">
                 <th className="py-2 pr-3">#</th>
                 <th className="py-2 pr-3">ক্লায়েন্ট আইডি</th>
                 <th className="py-2 pr-3">নাম</th>
@@ -364,18 +365,18 @@ export function AdminClients() {
               {clients.map((p, i) => {
                 const pend = (requests.data ?? []).filter((r) => r.user_id === p.id).length;
                 return (
-                  <tr key={p.id} className="border-b border-white/6 align-middle text-white/85">
+                  <tr key={p.id} className="border-b border-border align-middle text-muted-foreground">
                     <td className="py-2.5 pr-3">{(i + 1).toLocaleString("bn-BD")}</td>
                     <td className="py-2.5 pr-3 whitespace-nowrap">
-                      <button className="font-semibold text-brand-accent hover:underline" onClick={() => setSelectedId(p.id)}>
+                      <Button className="font-semibold text-primary hover:underline" onClick={() => setSelectedId(p.id)}>
                         {p.client_code || "—"}
-                      </button>
+                      </Button>
                     </td>
                     <td className="py-2.5 pr-3">
-                      <button className="font-semibold text-white hover:underline" onClick={() => setSelectedId(p.id)}>
+                      <Button className="font-semibold text-foreground hover:underline" onClick={() => setSelectedId(p.id)}>
                         {p.full_name || "নাম নেই"}
-                      </button>
-                      {pend ? <span className="ml-2 rounded-full bg-amber-400/15 px-2 py-0.5 text-[11px] text-amber-200">{pend} অনুরোধ</span> : null}
+                      </Button>
+                      {pend ? <span className="ml-2 rounded bg-warning-tint px-2 py-0.5 text-[11px] text-warning">{pend} অনুরোধ</span> : null}
                     </td>
                     <td className="py-2.5 pr-3 whitespace-nowrap">{formatBdPhone(p.phone)}</td>
                     <td className="py-2.5 pr-3">{p.address || "—"}</td>

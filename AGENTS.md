@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Design architecture
+- Keep visual roles centralized in src/styles.css and consume semantic tokens across public and authenticated views, so the supplied brand standard remains consistent without changing business logic.

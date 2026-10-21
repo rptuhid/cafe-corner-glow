@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useState, type ReactNode } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
@@ -43,10 +44,10 @@ export function DashboardShell({
         <Link
           to="/dashboard"
           onClick={() => setOpen(false)}
-          className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors ${
+          className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
             pathname === "/dashboard"
               ? "bg-primary text-primary-foreground"
-              : "text-white/70 hover:bg-white/8 hover:text-white"
+              : "text-muted-foreground hover:bg-secondary hover:text-foreground"
           }`}
         >
           <LayoutDashboard className="h-4 w-4" /> ড্যাশবোর্ড
@@ -57,10 +58,10 @@ export function DashboardShell({
           key={m.id}
           to={m.to}
           onClick={() => setOpen(false)}
-          className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors ${
+          className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
             pathname === m.to
               ? "bg-primary text-primary-foreground"
-              : "text-white/70 hover:bg-white/8 hover:text-white"
+              : "text-muted-foreground hover:bg-secondary hover:text-foreground"
           }`}
         >
           <ModuleIcon name={m.icon} className="h-4 w-4 shrink-0" />
@@ -71,72 +72,72 @@ export function DashboardShell({
   );
 
   return (
-    <div className="min-h-screen bg-ink">
-      <div className="mx-auto flex max-w-7xl">
-        <aside className="sticky top-0 hidden h-screen w-72 shrink-0 flex-col border-r border-white/10 p-5 lg:flex">
+    <div className="min-h-screen bg-background">
+      <div className="mx-auto flex max-w-[1200px]">
+        <aside className="sticky top-0 hidden h-screen w-72 shrink-0 flex-col border-r border-border p-5 lg:flex">
           <Link to="/" className="mb-7 flex items-center gap-3">
             <img
               src={logo.url}
               alt={`${shop.nameEn} লোগো`}
-              className="h-10 w-10 rounded-xl object-cover"
+              className="h-10 w-10 rounded-lg object-cover"
               width={40}
               height={40}
             />
-            <span className="font-display text-sm font-bold text-white">{shop.nameBn}</span>
+            <span className="font-display text-sm font-bold text-foreground">{shop.nameBn}</span>
           </Link>
           {nav}
-          <button
+          <Button
             onClick={handleSignOut}
-            className="mt-auto flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-white/60 transition-colors hover:bg-white/8 hover:text-white"
+            className="mt-auto flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
           >
             <LogOut className="h-4 w-4" /> লগআউট
-          </button>
+          </Button>
         </aside>
 
         <div className="min-w-0 flex-1">
-          <header className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-4 lg:px-8">
+          <header className="flex items-center justify-between gap-3 border-b border-border px-4 py-4 lg:px-8">
             <div className="min-w-0">
-              <h1 className="truncate font-display text-xl font-extrabold text-white">{title}</h1>
-              {subtitle ? <p className="mt-1 text-sm text-white/55">{subtitle}</p> : null}
+              <h1 className="truncate font-display text-xl font-extrabold text-foreground">{title}</h1>
+              {subtitle ? <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p> : null}
             </div>
             {role ? (
-              <span className="hidden shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-white/70 sm:inline">
+              <span className="hidden shrink-0 rounded border border-border bg-secondary px-3 py-1 text-xs font-semibold text-muted-foreground sm:inline">
                 {roleLabel[role]}
               </span>
             ) : null}
-            <button
-              className="rounded-xl border border-white/15 p-2 text-white lg:hidden"
+            <Button
+              className="rounded-lg border border-border p-2 text-foreground lg:hidden"
               onClick={() => setOpen((v) => !v)}
               aria-label="মেনু"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+            </Button>
           </header>
 
           {open ? (
-            <div className="border-b border-white/10 p-4 lg:hidden">
+            <div className="border-b border-border p-4 lg:hidden">
               {nav}
-              <button
+              <Button
                 onClick={handleSignOut}
-                className="mt-2 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-white/60 hover:text-white"
+                className="mt-2 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold text-muted-foreground hover:text-foreground"
               >
                 <LogOut className="h-4 w-4" /> লগআউট
-              </button>
+              </Button>
             </div>
           ) : null}
 
           <main className="px-4 py-7 lg:px-8">
             {loading ? (
-              <div className="flex items-center gap-2 text-sm text-white/60">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Loader2 className="h-4 w-4 animate-spin" /> লোড হচ্ছে…
               </div>
             ) : denied ? (
-              <div className="rounded-2xl border border-red-500/25 bg-red-500/10 p-8 text-center">
-                <ShieldAlert className="mx-auto h-8 w-8 text-red-300" />
-                <p className="mt-3 font-display text-base font-bold text-white">
+              <div className="rounded-lg border border-destructive/25 bg-error-tint p-8 text-center">
+                <ShieldAlert className="mx-auto h-8 w-8 text-destructive" />
+                <p className="mt-3 font-display text-base font-bold text-foreground">
                   এই সেকশনে আপনার প্রবেশাধিকার নেই
                 </p>
-                <p className="mt-1 text-sm text-white/60">
+                <p className="mt-1 text-sm text-muted-foreground">
                   প্রয়োজন হলে অ্যাডমিনের সাথে যোগাযোগ করুন।
                 </p>
               </div>
@@ -152,9 +153,9 @@ export function DashboardShell({
 
 export function ModulePlaceholder({ note }: { note: string }) {
   return (
-    <div className="rounded-2xl border border-dashed border-white/15 bg-white/5 p-8 text-center">
-      <p className="text-sm text-white/65">{note}</p>
-      <p className="mt-2 text-xs text-white/40">
+    <div className="rounded-lg border border-dashed border-border bg-secondary p-8 text-center">
+      <p className="text-sm text-muted-foreground">{note}</p>
+      <p className="mt-2 text-xs text-muted-foreground">
         এই মডিউলের বিস্তারিত কার্যকারিতা পরবর্তী ধাপে যুক্ত হবে।
       </p>
     </div>
