@@ -113,11 +113,11 @@ export const modules: ModuleItem[] = [
 ];
 
 export const toneClass: Record<string, string> = {
-  sky: "bg-sky-500/15 text-sky-300",
-  green: "bg-green-500/15 text-green-300",
-  violet: "bg-violet-500/15 text-violet-300",
-  amber: "bg-amber-500/15 text-amber-300",
-  cyan: "bg-cyan-500/15 text-cyan-300",
-  emerald: "bg-emerald-500/15 text-emerald-300",
-  red: "bg-red-500/15 text-red-300",
+  sky: "bg-secondary text-primary",
+  green: "bg-secondary text-primary",
+  violet: "bg-secondary text-primary",
+  amber: "bg-secondary text-primary",
+  cyan: "bg-secondary text-primary",
+  emerald: "bg-secondary text-primary",
+  red: "bg-secondary text-primary",
 };

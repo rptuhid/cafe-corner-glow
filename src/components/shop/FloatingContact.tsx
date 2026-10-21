@@ -9,7 +9,7 @@ export function FloatingContact() {
         target="_blank"
         rel="noreferrer"
         aria-label="Gmail-এ ইমেইল পাঠান"
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-elegant transition-transform hover:-translate-y-1"
+        className="flex h-12 w-12 items-center justify-center rounded bg-primary text-primary-foreground shadow-elegant transition-transform "
       >
         <Mail className="h-5 w-5" />
       </a>
@@ -18,7 +18,7 @@ export function FloatingContact() {
         target="_blank"
         rel="noreferrer"
         aria-label="হোয়াটসঅ্যাপে বার্তা পাঠান"
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-hover transition-transform hover:-translate-y-1"
+        className="flex h-14 w-14 items-center justify-center rounded bg-primary text-foreground shadow-elegant transition-transform "
       >
         <MessageCircle className="h-6 w-6" />
       </a>

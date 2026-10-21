@@ -42,21 +42,21 @@ function DashboardHome() {
           <Link
             key={m.id}
             to={m.to}
-            className="group rounded-2xl border border-white/10 bg-white/5 p-5 transition-all hover:-translate-y-1 hover:border-white/25"
+            className="group rounded-lg border border-border bg-secondary p-5 transition-all  hover:border-border"
           >
             <div className="flex items-start justify-between">
               <span
-                className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${toneClass[m.tone]}`}
+                className={`inline-flex h-11 w-11 items-center justify-center rounded-lg ${toneClass[m.tone]}`}
               >
                 <ModuleIcon name={m.icon} className="h-5 w-5" />
               </span>
-              <ArrowUpRight className="h-4 w-4 text-white/30 transition-colors group-hover:text-white" />
+              <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-foreground" />
             </div>
-            <h2 className="mt-4 font-display text-base font-bold text-white">{m.titleBn}</h2>
-            <p className="text-xs font-semibold text-white/40">{m.titleEn}</p>
-            <p className="mt-2 text-sm leading-relaxed text-white/60">{m.desc}</p>
+            <h2 className="mt-4 font-display text-base font-bold text-foreground">{m.titleBn}</h2>
+            <p className="text-xs font-semibold text-muted-foreground">{m.titleEn}</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{m.desc}</p>
             {m.soon ? (
-              <span className="mt-3 inline-block rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white/60">
+              <span className="mt-3 inline-block rounded bg-secondary px-2.5 py-1 text-[11px] font-semibold text-muted-foreground">
                 শীঘ্রই আসছে
               </span>
             ) : null}

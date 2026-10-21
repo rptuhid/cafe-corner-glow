@@ -7,14 +7,14 @@ const featIcons = { bolt: Zap, shield: ShieldCheck, wallet: Wallet, headset: Hea
 
 export function About() {
   return (
-    <section id="about" className="bg-brand-soft px-4 py-20 sm:px-6">
-      <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
+    <section id="about" className="bg-secondary px-4 py-16 sm:px-6">
+      <div className="mx-auto grid max-w-[1200px] items-center gap-8 lg:grid-cols-2">
         <div className="relative">
-          <div className="rounded-3xl border border-border bg-card p-8 shadow-elegant">
+          <div className="border-l-2 border-primary pl-6">
             <img
               src={logo.url}
               alt={`${shop.nameEn} লোগো`}
-              className="h-20 w-20 rounded-2xl object-cover"
+              className="h-20 w-20 object-contain"
               width={80}
               height={80}
             />
@@ -41,13 +41,13 @@ export function About() {
           </div>
 
           <div className="mt-4 grid grid-cols-2 gap-4">
-            <div className="rounded-2xl bg-ink p-5 text-center">
-              <div className="font-display text-2xl font-extrabold text-white">10+</div>
-              <div className="mt-1 text-xs text-white/60">বছরের অভিজ্ঞতা</div>
+            <div className="rounded-lg border-t border-border p-5">
+              <div className="font-display text-2xl font-extrabold text-foreground">10+</div>
+              <div className="mt-1 text-xs text-muted-foreground">বছরের অভিজ্ঞতা</div>
             </div>
-            <div className="rounded-2xl bg-primary p-5 text-center">
-              <div className="font-display text-2xl font-extrabold text-primary-foreground">7</div>
-              <div className="mt-1 text-xs text-primary-foreground/75">বিশেষজ্ঞ সেবা</div>
+            <div className="rounded-lg border-t border-border p-5">
+              <div className="font-display text-2xl font-extrabold text-primary">7</div>
+              <div className="mt-1 text-xs text-muted-foreground">বিশেষজ্ঞ সেবা</div>
             </div>
           </div>
         </div>
@@ -75,9 +75,9 @@ export function About() {
               return (
                 <div
                   key={f.title}
-                  className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4"
+                  className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
                 >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <Icon className="h-5 w-5" />
                   </span>
                   <span>
